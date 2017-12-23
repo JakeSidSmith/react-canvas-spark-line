@@ -4,6 +4,8 @@
 
 **Simple canvas SparkLine React component**
 
+![Examples](https://raw.githubusercontent.com/JakeSidSmith/react-canvas-spark-line/master/images/examples.gif)
+
 ## Install
 
 ```shell
