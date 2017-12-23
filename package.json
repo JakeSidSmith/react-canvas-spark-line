@@ -1,6 +1,6 @@
 {
   "name": "react-canvas-spark-line",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Simple canvas SparkLine React component",
   "main": "dist/index.js",
   "scripts": {
