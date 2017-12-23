@@ -2,11 +2,12 @@
   "name": "react-canvas-spark-line",
   "version": "0.0.0",
   "description": "Simple canvas SparkLine React component",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "prepublish": "npm run test && npm run dist",
     "start": "./scripts/start",
-    "build": "./scripts/build",
-    "lint": "eslint src/ examples/src/",
+    "dist": "./scripts/dist",
+    "lint": "eslint src/ tests/ examples/src/",
     "tests": "jest",
     "test": "npm run lint && npm run tests -- --coverage --runInBand"
   },
@@ -41,6 +42,7 @@
     "slik": "1.2.3"
   },
   "devDependencies": {
+    "babel-cli": "6.26.0",
     "concurrently": "3.5.1",
     "eslint-config-jakesidsmith": "github:jakesidsmith/eslint-config-jakesidsmith",
     "http-server": "0.10.0",
