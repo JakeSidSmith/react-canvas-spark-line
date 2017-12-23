@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SparkLine should render a canvas with the provided width and height 1`] = `
+<canvas
+  height={40}
+  style={
+    Object {
+      "height": 20,
+      "width": 80,
+    }
+  }
+  width={160}
+/>
+`;

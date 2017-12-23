@@ -1,0 +1,64 @@
+{
+  "name": "react-canvas-spark-line",
+  "version": "0.0.0",
+  "description": "Simple canvas SparkLine React component",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "./scripts/start",
+    "build": "./scripts/build",
+    "lint": "eslint src/ examples/src/",
+    "tests": "jest",
+    "test": "npm run lint && npm run tests -- --coverage --runInBand"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakesidsmith/react-canvas-spark-line.git"
+  },
+  "keywords": [
+    "spark",
+    "line",
+    "graph",
+    "react",
+    "component"
+  ],
+  "author": "Jake 'Sid' Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jakesidsmith/react-canvas-spark-line/issues"
+  },
+  "homepage": "https://github.com/jakesidsmith/react-canvas-spark-line#readme",
+  "dependencies": {
+    "babel-core": "6.26.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-react": "6.24.1",
+    "babelify": "8.0.0",
+    "browserify": "14.5.0",
+    "canvasimo": "0.5.3",
+    "prop-types": "15.6.0",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "react-slik": "1.0.1",
+    "slik": "1.2.3"
+  },
+  "devDependencies": {
+    "concurrently": "3.5.1",
+    "eslint-config-jakesidsmith": "github:jakesidsmith/eslint-config-jakesidsmith",
+    "http-server": "0.10.0",
+    "jest": "22.0.4",
+    "react-test-renderer": "16.2.0",
+    "watchify": "3.9.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/tests/helpers/setup.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/tests/helpers/"
+    ],
+    "testRegex": "(/tests/.*|\\.(test|spec))\\.(js|jsx)$"
+  }
+}

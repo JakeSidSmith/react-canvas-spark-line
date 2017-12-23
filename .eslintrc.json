@@ -1,0 +1,8 @@
+{
+  "extends": [
+    "jakesidsmith/es6",
+    "jakesidsmith/react",
+    "jakesidsmith/commonjs",
+    "jakesidsmith/browser"
+  ]
+}
