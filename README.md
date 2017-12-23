@@ -15,6 +15,8 @@ npm install react-canvas-spark-line --save --save-exact
 ## Usage
 
 ```javascript
+import SparkLine from 'react-canvas-spark-line';
+
 const data = [
   1,
   2,
