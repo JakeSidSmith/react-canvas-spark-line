@@ -1,5 +1,7 @@
 # SparkLine
 
+[![CircleCI](https://circleci.com/gh/JakeSidSmith/react-canvas-spark-line.svg?style=svg)](https://circleci.com/gh/JakeSidSmith/react-canvas-spark-line)
+
 **Simple canvas SparkLine React component**
 
 ## Install
