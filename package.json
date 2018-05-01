@@ -32,10 +32,10 @@
     "babel-core": "6.26.0",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-react": "6.24.1",
-    "canvasimo": "0.5.3",
-    "prop-types": "15.6.0",
-    "react-slik": "1.0.1",
-    "slik": "1.2.3"
+    "canvasimo": "^0.5.3",
+    "prop-types": "~15.6.0",
+    "react-slik": "~1.0.1",
+    "slik": "~1.2.3"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
