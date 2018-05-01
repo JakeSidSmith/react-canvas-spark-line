@@ -6,4 +6,4 @@ rm -rf dist/
 
 mkdir -p dist/
 
-babel src/index.js --out-file dist/index.js
+babel src/index.js --source-maps --out-file dist/index.js
