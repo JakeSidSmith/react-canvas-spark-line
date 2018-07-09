@@ -4,7 +4,7 @@
   "description": "Simple canvas SparkLine React component",
   "main": "dist/index.js",
   "scripts": {
-    "prepublish": "npm run test && npm run dist",
+    "prepare": "npm run test && npm run dist",
     "start": "./scripts/start",
     "dist": "./scripts/dist",
     "lint": "eslint src/ tests/ examples/src/",
