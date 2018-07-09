@@ -4,5 +4,8 @@
     "jakesidsmith/react",
     "jakesidsmith/commonjs",
     "jakesidsmith/browser"
+  ],
+  "plugins": [
+    "babel-eslint"
   ]
 }
