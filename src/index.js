@@ -77,6 +77,7 @@ export class SparkLine extends React.Component {
       dataFill.push({x: width, y: height});
 
       this.canvas
+        .setSize(width, height)
         .clearCanvas()
         .setDensity(2)
         .beginPath()
@@ -97,8 +98,8 @@ export class SparkLine extends React.Component {
     return (
       <canvas
         ref={this.storeRef}
-        width={width}
-        height={height}
+        width={width * 2}
+        height={height * 2}
         style={{width, height}}
       />
     );
