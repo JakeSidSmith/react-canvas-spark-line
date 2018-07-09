@@ -1,7 +1,6 @@
 import Canvasimo from 'canvasimo';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { animate } from 'react-slik';
 import Slik from 'slik';
 
@@ -15,20 +14,16 @@ const animation = new Slik.Animation({
 });
 
 export class SparkLine extends React.Component {
-  constructor (props) {
-    super(props);
-
-    this.draw = this.draw.bind(this);
-  }
-
   componentDidMount () {
     window.addEventListener('resize', this.draw);
-
-    this.element = ReactDOM.findDOMNode(this);
 
     if (this.element) {
       this.canvas = new Canvasimo(this.element);
       this.draw();
+    }
+
+    if (this.props.animate) {
+      animation.reset().start();
     }
   }
 
@@ -40,20 +35,39 @@ export class SparkLine extends React.Component {
     window.removeEventListener('resize', this.draw);
   }
 
-  draw () {
+  storeRef = (element) => {
+    this.element = element;
+  }
+
+  mapValueY (value, height, min, max) {
+    const diff = max - min;
+
+    const offset = height - 0.5;
+    const calculated = ((value - min) / diff) * (height - 1);
+
+    return offset - calculated;
+  }
+
+  draw = () => {
     if (this.canvas) {
-      const { color, width, height } = this.props;
+      const { color, width, height, includeZero } = this.props;
       let { data, transition } = this.props;
-      const max = Math.max.apply(null, data) + 1;
+      let max = Math.max.apply(null, data);
+      let min = Math.min.apply(null, data);
+
+      const allValuesAreTheSame = max === min;
+
+      max = includeZero && max < 0 ? 0 : max;
+      min = includeZero && min > 0 ? 0 : min;
 
       transition = this.props.animate ? transition : 1;
 
       data = data.length === 1 ? data.concat(data[0]) : data;
 
-      const datas = data.map((number, index) => {
+      const datas = data.map((value, index) => {
         return {
           x: width / (data.length - 1) * index,
-          y: height - number / max * height
+          y: allValuesAreTheSame ? height / 2 : this.mapValueY(value, height, min, max)
         };
       });
 
@@ -82,6 +96,7 @@ export class SparkLine extends React.Component {
 
     return (
       <canvas
+        ref={this.storeRef}
         width={width}
         height={height}
         style={{width, height}}
@@ -95,7 +110,12 @@ SparkLine.propTypes = {
   height: PropTypes.number.isRequired,
   color: PropTypes.string,
   animate: PropTypes.bool,
-  data: PropTypes.arrayOf(PropTypes.number).isRequired
+  data: PropTypes.arrayOf(PropTypes.number).isRequired,
+  includeZero: PropTypes.bool
 };
 
-export default animate(SparkLine, {transition: animation}, {bind: 'update', startOnMount: true, stopOnUnmount: true});
+SparkLine.defaultProps = {
+  includeZero: true
+};
+
+export default animate(SparkLine, {transition: animation}, {bind: 'update', startOnMount: false, stopOnUnmount: true});
