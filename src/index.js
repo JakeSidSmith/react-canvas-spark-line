@@ -68,7 +68,7 @@ export class SparkLine extends React.Component {
         .beginPath()
         .plotRect(0, 0, width * transition, height)
         .clip()
-        .setStrokeWidth(2)
+        .setStrokeWidth(1)
         .beginPath()
         .strokePath(datas, color)
         .setOpacity(0.3)
