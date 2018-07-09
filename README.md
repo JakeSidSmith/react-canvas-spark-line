@@ -32,6 +32,7 @@ class MyComponent extends Component {
         height={30}
         color="red"
         data={data}
+        includeZero={false} // Default: true
       />
     );
   }
