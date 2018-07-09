@@ -52,20 +52,21 @@ export class SparkLine extends React.Component {
 
       const datas = data.map((number, index) => {
         return {
-          x: width / (data.length - 1) * index * 2,
-          y: height * 2 - number / max * height * 2
+          x: width / (data.length - 1) * index,
+          y: height - number / max * height
         };
       });
 
       const dataFill = [].concat(datas);
 
-      dataFill.unshift({x: 0, y: height * 2});
-      dataFill.push({x: width * 2, y: height * 2});
+      dataFill.unshift({x: 0, y: height});
+      dataFill.push({x: width, y: height});
 
       this.canvas
         .clearCanvas()
+        .setDensity(2)
         .beginPath()
-        .plotRect(0, 0, width * 2 * transition, height * 2)
+        .plotRect(0, 0, width * transition, height)
         .clip()
         .setStrokeWidth(2)
         .beginPath()
@@ -81,8 +82,8 @@ export class SparkLine extends React.Component {
 
     return (
       <canvas
-        width={width * 2}
-        height={height * 2}
+        width={width}
+        height={height}
         style={{width, height}}
       />
     );
