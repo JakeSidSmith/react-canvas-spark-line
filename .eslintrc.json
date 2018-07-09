@@ -4,5 +4,6 @@
     "jakesidsmith/react",
     "jakesidsmith/commonjs",
     "jakesidsmith/browser"
-  ]
+  ],
+  "parser": "babel-eslint"
 }

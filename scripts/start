@@ -11,4 +11,4 @@ concurrently --kill-others \
   --names='watch-js   ,http-server' \
   --prefix-colors='red,green' \
   'watchify -d -t babelify examples/src/js/index.js -o examples/build/js/index.js -v' \
-  'http-server -c-0 examples/ -o'
+  'http-server -c-0 examples/'

@@ -28,10 +28,12 @@ class MyComponent extends Component {
     return (
       <SparkLine
         animate
+        animationDuration={2000} // Default: 1000 (milliseconds)
         width={100}
         height={30}
         color="red"
         data={data}
+        includeZero={false} // Default: true
       />
     );
   }
