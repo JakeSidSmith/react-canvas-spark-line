@@ -54,8 +54,7 @@
     "watchify": "^3.9.0"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-dom": "*"
+    "react": "*"
   },
   "jest": {
     "setupFiles": [
