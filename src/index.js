@@ -1,19 +1,27 @@
 import Canvasimo from 'canvasimo';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { animate } from 'react-slik';
 import Slik from 'slik';
 
-const animation = new Slik.Animation({
-  from: 0,
-  to: 1,
-  duration: 1000,
-  ease: (value) => {
-    return Slik.Easing.EaseInSine(Slik.Easing.EaseInSine(value));
-  }
-});
-
 export class SparkLine extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      transition: 0
+    };
+
+    this.animation = new Slik.Animation({
+      from: 0,
+      to: 1,
+      duration: 1000,
+      ease: (value) => {
+        return Slik.Easing.EaseInSine(Slik.Easing.EaseInSine(value));
+      }
+    });
+
+    this.unsubscribe = this.animation.subscribe('update', this.onTransition);
+  }
   componentDidMount () {
     window.addEventListener('resize', this.draw);
 
@@ -23,7 +31,7 @@ export class SparkLine extends React.Component {
     }
 
     if (this.props.animate) {
-      animation.reset().start();
+      this.animation.reset().start();
     }
   }
 
@@ -32,7 +40,15 @@ export class SparkLine extends React.Component {
   }
 
   componentWillUnmount () {
+    this.animation.stop();
+    this.unsubscribe();
     window.removeEventListener('resize', this.draw);
+  }
+
+  onTransition = (value) => {
+    this.setState({
+      transition: value
+    });
   }
 
   storeRef = (element) => {
@@ -51,7 +67,8 @@ export class SparkLine extends React.Component {
   draw = () => {
     if (this.canvas) {
       const { color, width, height, includeZero } = this.props;
-      let { data, transition } = this.props;
+      let { data } = this.props;
+      let { transition } = this.state;
       let max = Math.max.apply(null, data);
       let min = Math.min.apply(null, data);
 
@@ -119,4 +136,4 @@ SparkLine.defaultProps = {
   includeZero: true
 };
 
-export default animate(SparkLine, {transition: animation}, {bind: 'update', startOnMount: false, stopOnUnmount: true});
+export default SparkLine;

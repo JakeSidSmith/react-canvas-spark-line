@@ -31,7 +31,6 @@
   "dependencies": {
     "canvasimo": "^0.6.5",
     "prop-types": "^15.6.0",
-    "react-slik": "^1.0.1",
     "slik": "^1.2.3"
   },
   "devDependencies": {
