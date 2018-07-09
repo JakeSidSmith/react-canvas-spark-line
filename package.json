@@ -29,10 +29,10 @@
   },
   "homepage": "https://github.com/jakesidsmith/react-canvas-spark-line#readme",
   "dependencies": {
-    "canvasimo": "^0.5.3",
     "prop-types": "~15.6.0",
     "react-slik": "~1.0.1",
     "slik": "~1.2.3"
+    "canvasimo": "^0.6.5",
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
