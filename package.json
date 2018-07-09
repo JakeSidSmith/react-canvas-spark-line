@@ -45,8 +45,8 @@
     "eslint-config-jakesidsmith": "github:jakesidsmith/eslint-config-jakesidsmith",
     "http-server": "^0.10.0",
     "jest": "^22.0.4",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
     "react-test-renderer": "^16.2.0",
     "watchify": "^3.9.0"
   },
