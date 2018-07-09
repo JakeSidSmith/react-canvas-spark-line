@@ -30,7 +30,7 @@ class App extends React.Component {
           width={100}
           height={30}
           color="green"
-          data={[1]}
+          data={[100]}
         />
 
         <SparkLine
