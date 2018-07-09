@@ -14,7 +14,7 @@ export class SparkLine extends React.Component {
     this.animation = new Slik.Animation({
       from: 0,
       to: 1,
-      duration: 1000,
+      duration: props.animationDuration,
       ease: (value) => {
         return Slik.Easing.EaseInSine(Slik.Easing.EaseInSine(value));
       }
@@ -128,12 +128,14 @@ SparkLine.propTypes = {
   height: PropTypes.number.isRequired,
   color: PropTypes.string,
   animate: PropTypes.bool,
+  animationDuration: PropTypes.number,
   data: PropTypes.arrayOf(PropTypes.number).isRequired,
   includeZero: PropTypes.bool
 };
 
 SparkLine.defaultProps = {
-  includeZero: true
+  includeZero: true,
+  animationDuration: 1000
 };
 
 export default SparkLine;

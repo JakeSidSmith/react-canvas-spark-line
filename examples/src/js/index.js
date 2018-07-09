@@ -19,6 +19,7 @@ class App extends React.Component {
       <div>
         <SparkLine
           animate
+          animationDuration={2000}
           width={100}
           height={30}
           color="red"
