@@ -34,9 +34,17 @@ class App extends React.Component {
         />
 
         <SparkLine
+          animate
           width={100}
           height={30}
           color="blue"
+          data={[10, 10]}
+        />
+
+        <SparkLine
+          width={100}
+          height={30}
+          color="red"
           data={[1, 2, 1]}
         />
       </div>
