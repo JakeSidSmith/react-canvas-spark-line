@@ -62,6 +62,7 @@
     "testPathIgnorePatterns": [
       "<rootDir>/tests/helpers/"
     ],
-    "testRegex": "(/tests/.*|\\.(test|spec))\\.(js|jsx)$"
+    "testRegex": "(/tests/.*|\\.(test|spec))\\.(js|jsx)$",
+    "testURL": "http://localhost/"
   }
 }
