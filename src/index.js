@@ -130,7 +130,8 @@ SparkLine.propTypes = {
   animate: PropTypes.bool,
   animationDuration: PropTypes.number,
   data: PropTypes.arrayOf(PropTypes.number).isRequired,
-  includeZero: PropTypes.bool
+  includeZero: PropTypes.bool,
+  areaOpacity: PropTypes.number
 };
 
 SparkLine.defaultProps = {
