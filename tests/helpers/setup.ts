@@ -9,7 +9,7 @@ const getContext = jest.fn(() => {
     rect: jest.fn(),
     clip: jest.fn(),
     stroke: jest.fn(),
-    fill: jest.fn()
+    fill: jest.fn(),
   };
 });
 
@@ -24,5 +24,5 @@ const setAttribute = jest.fn((attribute) => {
 jest.spyOn(ReactDOM, 'findDOMNode').mockImplementation(() => ({
   getContext,
   getAttribute,
-  setAttribute
+  setAttribute,
 }));

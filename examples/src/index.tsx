@@ -1,6 +1,6 @@
 import React from 'React';
 import ReactDOM from 'react-dom';
-import SparkLine from '../../../src/index';
+import SparkLine from '../../src/index';
 
 const DATA = [
   1,
@@ -10,13 +10,13 @@ const DATA = [
   8,
   3,
   8,
-  3
+  3,
 ];
 
 class App extends React.Component {
-  render () {
+  public render () {
     return (
-      <div>
+      <>
         <SparkLine
           animate
           animationDuration={2000}
@@ -87,7 +87,7 @@ class App extends React.Component {
           includeZero={false}
           areaOpacity={0}
         />
-      </div>
+      </>
     );
   }
 }

@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "description": "Simple canvas SparkLine React component",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "prepare": "npm run test && npm run dist",
-    "start": "./scripts/start",
-    "dist": "./scripts/dist",
-    "lint": "eslint src/ tests/ examples/src/",
+    "prepublishOnly": "npm run test && npm run dist",
+    "start": "budo examples/src/index.tsx:build/index.js --live --dir examples -- -p [tsify -p tsconfig.examples.json]",
+    "dist": "rm -rf dist && tsc --project tsconfig.dist.json",
+    "typecheck": "tsc --noEmit --project tsconfig.json",
+    "lint": "tslint --project tsconfig.json '@(src|tests|examples|docs)/**/*.@(ts|tsx)'",
     "tests": "jest",
-    "test": "npm run lint && npm run tests -- --coverage --runInBand"
+    "test": "npm run typecheck && npm run lint && npm run tests -- --coverage --runInBand"
   },
   "repository": {
     "type": "git",
@@ -29,40 +31,52 @@
   },
   "homepage": "https://github.com/jakesidsmith/react-canvas-spark-line#readme",
   "dependencies": {
+    "@types/prop-types": "^15.5.8",
+    "@types/react": "^16.7.22",
     "canvasimo": "^0.6.8",
     "prop-types": "^15.6.0",
     "slik": "^1.2.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^7.2.3",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babelify": "^8.0.0",
-    "browserify": "^14.5.0",
-    "concurrently": "^3.6.1",
-    "eslint": "^3.19.0",
-    "eslint-config-jakesidsmith": "github:jakesidsmith/eslint-config-jakesidsmith",
-    "http-server": "^0.10.0",
-    "jest": "^22.4.4",
+    "@types/jest": "^23.3.13",
+    "@types/react-dom": "^16.0.11",
+    "@types/react-test-renderer": "^16.0.3",
+    "browserify": "^16.2.3",
+    "budo": "^11.6.0",
+    "jest": "^23.6.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-test-renderer": "^16.7.0",
-    "watchify": "^3.11.0"
+    "ts-jest": "^23.10.5",
+    "tsify": "^4.0.1",
+    "tslint": "^5.12.1",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.3.1"
   },
   "peerDependencies": {
     "react": "*"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.(js|jsx|ts|tsx)"
+    ],
     "setupFiles": [
-      "<rootDir>/tests/helpers/setup.js"
+      "<rootDir>/tests/helpers/setup.ts"
     ],
     "testPathIgnorePatterns": [
       "<rootDir>/tests/helpers/"
     ],
-    "testRegex": "(/tests/.*|\\.(test|spec))\\.(js|jsx)$",
-    "testURL": "http://localhost/"
+    "testRegex": "(/tests/.*|\\.(test|spec))\\.(js|jsx|ts|tsx)$",
+    "testURL": "http://localhost/",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ]
   }
 }
