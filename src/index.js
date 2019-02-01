@@ -66,7 +66,7 @@ export class SparkLine extends React.Component {
 
   draw = () => {
     if (this.canvas) {
-      const { color, width, height, includeZero } = this.props;
+      const { color, width, height, includeZero, areaOpacity } = this.props;
       let { data } = this.props;
       let { transition } = this.state;
       let max = Math.max.apply(null, data);
@@ -103,7 +103,7 @@ export class SparkLine extends React.Component {
         .setStrokeWidth(1)
         .beginPath()
         .strokePath(datas, color)
-        .setOpacity(0.3)
+        .setOpacity(areaOpacity)
         .beginPath()
         .fillPath(dataFill, color);
     }
@@ -135,7 +135,8 @@ SparkLine.propTypes = {
 
 SparkLine.defaultProps = {
   includeZero: true,
-  animationDuration: 1000
+  animationDuration: 1000,
+  areaOpacity: 0.3
 };
 
 export default SparkLine;
