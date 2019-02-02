@@ -1,6 +1,6 @@
 {
   "name": "react-canvas-spark-line",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple canvas SparkLine React component",
   "main": "dist/index.js",
   "scripts": {
@@ -29,28 +29,28 @@
   },
   "homepage": "https://github.com/jakesidsmith/react-canvas-spark-line#readme",
   "dependencies": {
-    "canvasimo": "^0.6.5",
+    "canvasimo": "^0.6.8",
     "prop-types": "^15.6.0",
     "slik": "^1.2.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babelify": "^8.0.0",
     "browserify": "^14.5.0",
-    "concurrently": "^3.5.1",
+    "concurrently": "^3.6.1",
     "eslint": "^3.19.0",
     "eslint-config-jakesidsmith": "github:jakesidsmith/eslint-config-jakesidsmith",
     "http-server": "^0.10.0",
-    "jest": "^22.0.4",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-test-renderer": "^16.2.0",
-    "watchify": "^3.9.0"
+    "jest": "^22.4.4",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-test-renderer": "^16.7.0",
+    "watchify": "^3.11.0"
   },
   "peerDependencies": {
     "react": "*"
@@ -62,6 +62,7 @@
     "testPathIgnorePatterns": [
       "<rootDir>/tests/helpers/"
     ],
-    "testRegex": "(/tests/.*|\\.(test|spec))\\.(js|jsx)$"
+    "testRegex": "(/tests/.*|\\.(test|spec))\\.(js|jsx)$",
+    "testURL": "http://localhost/"
   }
 }

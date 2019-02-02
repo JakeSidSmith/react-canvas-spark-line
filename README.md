@@ -34,6 +34,7 @@ class MyComponent extends Component {
         color="red"
         data={data}
         includeZero={false} // Default: true
+        areaOpacity={0} // Default: 0.3
       />
     );
   }

@@ -85,6 +85,7 @@ class App extends React.Component {
           color="blue"
           data={[-10, -20, -5]}
           includeZero={false}
+          areaOpacity={0}
         />
       </div>
     );
