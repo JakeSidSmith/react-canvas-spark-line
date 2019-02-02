@@ -31,14 +31,14 @@
   },
   "homepage": "https://github.com/jakesidsmith/react-canvas-spark-line#readme",
   "dependencies": {
-    "@types/prop-types": "^15.5.8",
-    "@types/react": "^16.7.22",
     "canvasimo": "^0.6.8",
     "prop-types": "^15.6.0",
     "slik": "^1.2.3"
   },
   "devDependencies": {
     "@types/jest": "^23.3.13",
+    "@types/prop-types": "^15.5.8",
+    "@types/react": "^16.8.1",
     "@types/react-dom": "^16.0.11",
     "@types/react-test-renderer": "^16.0.3",
     "browserify": "^16.2.3",
