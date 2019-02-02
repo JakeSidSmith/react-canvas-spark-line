@@ -1,31 +1,40 @@
-import React from 'React';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import SparkLine from '../../../src/index';
+import SparkLine from '../../src/index';
 
-const DATA = [
-  1,
-  2,
-  9,
-  4,
-  8,
-  3,
-  8,
-  3
-];
+const data: number[] = [];
+
+for (let i = 0; i < 20; i += 1) {
+  data.push(Math.random() * 10);
+}
 
 class App extends React.Component {
-  render () {
+  public render () {
     return (
-      <div>
+      <>
+        <p>Random data with zero line and default area</p>
         <SparkLine
           animate
           animationDuration={2000}
           width={100}
           height={30}
           color="red"
-          data={DATA}
+          data={data}
         />
 
+        <p>Random data without zero line and no area</p>
+        <SparkLine
+          animate
+          animationDuration={2000}
+          width={100}
+          height={30}
+          color="red"
+          data={data}
+          includeZero={false}
+          areaOpacity={0}
+        />
+
+        <p>Single value (100)</p>
         <SparkLine
           animate
           width={100}
@@ -34,6 +43,7 @@ class App extends React.Component {
           data={[100]}
         />
 
+        <p>Single value (0)</p>
         <SparkLine
           animate
           width={100}
@@ -42,6 +52,7 @@ class App extends React.Component {
           data={[0]}
         />
 
+        <p>2 identical values ([10, 10])</p>
         <SparkLine
           animate
           width={100}
@@ -50,6 +61,7 @@ class App extends React.Component {
           data={[10, 10]}
         />
 
+        <p>Include zero line ([1, 2, 1])</p>
         <SparkLine
           width={100}
           height={30}
@@ -57,6 +69,7 @@ class App extends React.Component {
           data={[1, 2, 1]}
         />
 
+        <p>Without zero line ([1, 2, 1])</p>
         <SparkLine
           width={100}
           height={30}
@@ -65,6 +78,7 @@ class App extends React.Component {
           includeZero={false}
         />
 
+        <p>Negative value ([-10, 20, 5])</p>
         <SparkLine
           width={100}
           height={30}
@@ -72,6 +86,7 @@ class App extends React.Component {
           data={[-10, 20, 5]}
         />
 
+        <p>All negative values with zero line ([-10, -20, -5])</p>
         <SparkLine
           width={100}
           height={30}
@@ -79,15 +94,15 @@ class App extends React.Component {
           data={[-10, -20, -5]}
         />
 
+        <p>All negative values without zero line ([-10, -20, -5])</p>
         <SparkLine
           width={100}
           height={30}
           color="blue"
           data={[-10, -20, -5]}
           includeZero={false}
-          areaOpacity={0}
         />
-      </div>
+      </>
     );
   }
 }

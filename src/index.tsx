@@ -3,12 +3,49 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Slik from 'slik';
 
-export class SparkLine extends React.Component {
-  constructor (props) {
+interface SparkLineProps {
+  data: ReadonlyArray<number>;
+  width: number;
+  height: number;
+  color: string;
+  animate?: boolean;
+  animationDuration?: number;
+  includeZero?: boolean;
+  areaOpacity?: number;
+}
+
+interface SparkLineState {
+  transition: number;
+}
+
+export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
+  public static propTypes: Record<keyof SparkLineProps, PropTypes.Validator<any>> = {
+    data: PropTypes.arrayOf(PropTypes.number).isRequired,
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    color: PropTypes.string,
+    animate: PropTypes.bool,
+    animationDuration: PropTypes.number,
+    includeZero: PropTypes.bool,
+    areaOpacity: PropTypes.number,
+  };
+
+  public static defaultProps: Partial<SparkLineProps> = {
+    includeZero: true,
+    animationDuration: 1000,
+    areaOpacity: 0.3,
+  };
+
+  private animation: Slik.Animation;
+  private unsubscribe: Slik.unsubscribe;
+  private element?: HTMLCanvasElement | null;
+  private canvas?: Canvasimo;
+
+  constructor (props: SparkLineProps) {
     super(props);
 
     this.state = {
-      transition: 0
+      transition: 0,
     };
 
     this.animation = new Slik.Animation({
@@ -17,12 +54,13 @@ export class SparkLine extends React.Component {
       duration: props.animationDuration,
       ease: (value) => {
         return Slik.Easing.EaseInSine(Slik.Easing.EaseInSine(value));
-      }
+      },
     });
 
     this.unsubscribe = this.animation.subscribe('update', this.onTransition);
   }
-  componentDidMount () {
+
+  public componentDidMount () {
     window.addEventListener('resize', this.draw);
 
     if (this.element) {
@@ -35,27 +73,40 @@ export class SparkLine extends React.Component {
     }
   }
 
-  componentDidUpdate () {
+  public componentDidUpdate () {
     this.draw();
   }
 
-  componentWillUnmount () {
+  public componentWillUnmount () {
     this.animation.stop();
     this.unsubscribe();
     window.removeEventListener('resize', this.draw);
   }
 
-  onTransition = (value) => {
+  public render () {
+    const { width, height } = this.props;
+
+    return (
+      <canvas
+        ref={this.storeRef}
+        width={width * 2}
+        height={height * 2}
+        style={{width, height}}
+      />
+    );
+  }
+
+  private onTransition = (value: number) => {
     this.setState({
-      transition: value
+      transition: value,
     });
   }
 
-  storeRef = (element) => {
+  private storeRef = (element: HTMLCanvasElement) => {
     this.element = element;
   }
 
-  mapValueY (value, height, min, max) {
+  private mapValueY (value: number, height: number, min: number, max: number) {
     const diff = max - min;
 
     const offset = height - 0.5;
@@ -64,13 +115,14 @@ export class SparkLine extends React.Component {
     return offset - calculated;
   }
 
-  draw = () => {
+  private draw = () => {
     if (this.canvas) {
       const { color, width, height, includeZero, areaOpacity } = this.props;
+
       let { data } = this.props;
       let { transition } = this.state;
-      let max = Math.max.apply(null, data);
-      let min = Math.min.apply(null, data);
+      let max = Math.max(...data);
+      let min = Math.min(...data);
 
       const allValuesAreTheSame = max === min;
 
@@ -84,11 +136,11 @@ export class SparkLine extends React.Component {
       const datas = data.map((value, index) => {
         return {
           x: width / (data.length - 1) * index,
-          y: allValuesAreTheSame ? height / 2 : this.mapValueY(value, height, min, max)
+          y: allValuesAreTheSame ? height / 2 : this.mapValueY(value, height, min, max),
         };
       });
 
-      const dataFill = [].concat(datas);
+      const dataFill = [...datas];
 
       dataFill.unshift({x: 0, y: height});
       dataFill.push({x: width, y: height});
@@ -103,41 +155,11 @@ export class SparkLine extends React.Component {
         .setStrokeWidth(1)
         .beginPath()
         .strokePath(datas, color)
-        .setOpacity(areaOpacity)
+        .setOpacity(areaOpacity!)
         .beginPath()
         .fillPath(dataFill, color);
     }
   }
-
-  render () {
-    const { width, height } = this.props;
-
-    return (
-      <canvas
-        ref={this.storeRef}
-        width={width * 2}
-        height={height * 2}
-        style={{width, height}}
-      />
-    );
-  }
 }
-
-SparkLine.propTypes = {
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  color: PropTypes.string,
-  animate: PropTypes.bool,
-  animationDuration: PropTypes.number,
-  data: PropTypes.arrayOf(PropTypes.number).isRequired,
-  includeZero: PropTypes.bool,
-  areaOpacity: PropTypes.number
-};
-
-SparkLine.defaultProps = {
-  includeZero: true,
-  animationDuration: 1000,
-  areaOpacity: 0.3
-};
 
 export default SparkLine;
