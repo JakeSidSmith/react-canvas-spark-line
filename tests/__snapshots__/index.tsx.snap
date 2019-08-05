@@ -1,5 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SparkLine areaColor should accept a string 1`] = `
+<canvas
+  height={40}
+  style={
+    Object {
+      "height": 20,
+      "width": 80,
+    }
+  }
+  width={160}
+/>
+`;
+
+exports[`SparkLine areaColor should accept an array of strings 1`] = `
+<canvas
+  height={40}
+  style={
+    Object {
+      "height": 20,
+      "width": 80,
+    }
+  }
+  width={160}
+/>
+`;
+
+exports[`SparkLine areaColor should be optional 1`] = `
+<canvas
+  height={40}
+  style={
+    Object {
+      "height": 20,
+      "width": 80,
+    }
+  }
+  width={160}
+/>
+`;
+
 exports[`SparkLine should render a canvas with the provided width and height 1`] = `
 <canvas
   height={40}

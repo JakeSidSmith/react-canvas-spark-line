@@ -34,6 +34,28 @@ class App extends React.Component {
           areaOpacity={0}
         />
 
+        <p>Random data with area color</p>
+        <SparkLine
+            animate
+            animationDuration={2000}
+            width={100}
+            height={30}
+            color="red"
+            data={data}
+            areaColor="orange"
+        />
+
+        <p>Random data with area gradient</p>
+        <SparkLine
+          animate
+          animationDuration={2000}
+          width={100}
+          height={30}
+          color="red"
+          data={data}
+          areaColor={['red', 'white']}
+        />
+
         <p>Single value (100)</p>
         <SparkLine
           animate
