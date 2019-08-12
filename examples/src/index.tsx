@@ -9,7 +9,7 @@ for (let i = 0; i < 20; i += 1) {
 }
 
 class App extends React.Component {
-  public render () {
+  public render() {
     return (
       <>
         <p>Random data with zero line and default area</p>
@@ -57,22 +57,10 @@ class App extends React.Component {
         />
 
         <p>Single value (100)</p>
-        <SparkLine
-          animate
-          width={100}
-          height={30}
-          color="green"
-          data={[100]}
-        />
+        <SparkLine animate width={100} height={30} color="green" data={[100]} />
 
         <p>Single value (0)</p>
-        <SparkLine
-          animate
-          width={100}
-          height={30}
-          color="blue"
-          data={[0]}
-        />
+        <SparkLine animate width={100} height={30} color="blue" data={[0]} />
 
         <p>2 identical values ([10, 10])</p>
         <SparkLine
@@ -84,12 +72,7 @@ class App extends React.Component {
         />
 
         <p>Include zero line ([1, 2, 1])</p>
-        <SparkLine
-          width={100}
-          height={30}
-          color="green"
-          data={[1, 2, 1]}
-        />
+        <SparkLine width={100} height={30} color="green" data={[1, 2, 1]} />
 
         <p>Without zero line ([1, 2, 1])</p>
         <SparkLine
@@ -101,12 +84,7 @@ class App extends React.Component {
         />
 
         <p>Negative value ([-10, 20, 5])</p>
-        <SparkLine
-          width={100}
-          height={30}
-          color="red"
-          data={[-10, 20, 5]}
-        />
+        <SparkLine width={100} height={30} color="red" data={[-10, 20, 5]} />
 
         <p>All negative values with zero line ([-10, -20, -5])</p>
         <SparkLine

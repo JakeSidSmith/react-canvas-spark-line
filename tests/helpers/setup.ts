@@ -13,16 +13,19 @@ const getContext = jest.fn(() => {
   };
 });
 
-const getAttribute = jest.fn((attribute) => {
+const getAttribute = jest.fn(attribute => {
   return attribute;
 });
 
-const setAttribute = jest.fn((attribute) => {
+const setAttribute = jest.fn(attribute => {
   return attribute;
 });
 
-jest.spyOn(ReactDOM, 'findDOMNode').mockImplementation(() => ({
-  getContext,
-  getAttribute,
-  setAttribute,
-}) as unknown as HTMLCanvasElement);
+jest.spyOn(ReactDOM, 'findDOMNode').mockImplementation(
+  () =>
+    (({
+      getContext,
+      getAttribute,
+      setAttribute,
+    } as unknown) as HTMLCanvasElement)
+);
