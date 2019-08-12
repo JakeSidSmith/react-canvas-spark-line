@@ -66,7 +66,5 @@ declare module 'slik' {
 
   export const Easing: IEasing;
 
-  namespace Slik {
-
-  }
+  namespace Slik {}
 }

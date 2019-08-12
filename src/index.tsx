@@ -12,7 +12,7 @@ interface SparkLineProps {
   animationDuration?: number;
   includeZero?: boolean;
   areaOpacity?: number;
-  areaColor?: string | string[]
+  areaColor?: string | string[];
 }
 
 interface SparkLineState {
@@ -20,7 +20,10 @@ interface SparkLineState {
 }
 
 export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
-  public static propTypes: Record<keyof SparkLineProps, PropTypes.Validator<any>> = {
+  public static propTypes: Record<
+    keyof SparkLineProps,
+    PropTypes.Validator<any>
+  > = {
     data: PropTypes.arrayOf(PropTypes.number).isRequired,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
@@ -46,7 +49,7 @@ export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
   private element?: HTMLCanvasElement | null;
   private canvas?: Canvasimo;
 
-  constructor (props: SparkLineProps) {
+  constructor(props: SparkLineProps) {
     super(props);
 
     this.state = {
@@ -57,7 +60,7 @@ export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
       from: 0,
       to: 1,
       duration: props.animationDuration,
-      ease: (value) => {
+      ease: value => {
         return Slik.Easing.EaseInSine(Slik.Easing.EaseInSine(value));
       },
     });
@@ -65,7 +68,7 @@ export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
     this.unsubscribe = this.animation.subscribe('update', this.onTransition);
   }
 
-  public componentDidMount () {
+  public componentDidMount() {
     window.addEventListener('resize', this.draw);
 
     if (this.element) {
@@ -78,17 +81,17 @@ export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
     }
   }
 
-  public componentDidUpdate () {
+  public componentDidUpdate() {
     this.draw();
   }
 
-  public componentWillUnmount () {
+  public componentWillUnmount() {
     this.animation.stop();
     this.unsubscribe();
     window.removeEventListener('resize', this.draw);
   }
 
-  public render () {
+  public render() {
     const { width, height } = this.props;
 
     return (
@@ -96,7 +99,7 @@ export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
         ref={this.storeRef}
         width={width * 2}
         height={height * 2}
-        style={{width, height}}
+        style={{ width, height }}
       />
     );
   }
@@ -105,13 +108,13 @@ export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
     this.setState({
       transition: value,
     });
-  }
+  };
 
   private storeRef = (element: HTMLCanvasElement) => {
     this.element = element;
-  }
+  };
 
-  private mapValueY (value: number, height: number, min: number, max: number) {
+  private mapValueY(value: number, height: number, min: number, max: number) {
     const diff = max - min;
 
     const offset = height - 0.5;
@@ -122,7 +125,14 @@ export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
 
   private draw = () => {
     if (this.canvas) {
-      const { color, width, height, includeZero, areaOpacity, areaColor } = this.props;
+      const {
+        color,
+        width,
+        height,
+        includeZero,
+        areaOpacity,
+        areaColor,
+      } = this.props;
 
       let { data } = this.props;
       let { transition } = this.state;
@@ -140,15 +150,17 @@ export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
 
       const datas = data.map((value, index) => {
         return {
-          x: width / (data.length - 1) * index,
-          y: allValuesAreTheSame ? height / 2 : this.mapValueY(value, height, min, max),
+          x: (width / (data.length - 1)) * index,
+          y: allValuesAreTheSame
+            ? height / 2
+            : this.mapValueY(value, height, min, max),
         };
       });
 
       const dataFill = [...datas];
 
-      dataFill.unshift({x: 0, y: height});
-      dataFill.push({x: width, y: height});
+      dataFill.unshift({ x: 0, y: height });
+      dataFill.push({ x: width, y: height });
 
       this.canvas
         .setSize(width, height)
@@ -166,8 +178,7 @@ export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
       // If areaColor is provided and it is an array, create a gradient
       if (areaColor && Array.isArray(areaColor)) {
         // Set the gradient to be from the top to the bottom
-        const gradient = this.canvas
-          .createLinearGradient(0, 0, 0, height);
+        const gradient = this.canvas.createLinearGradient(0, 0, 0, height);
 
         // gradient.addColorStop() requires a number between 0 and 1 as the color stop
         const stops = 1 / areaColor.length;
@@ -188,7 +199,7 @@ export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
         this.canvas.fillPath(dataFill, areaColor || color);
       }
     }
-  }
+  };
 }
 
 export default SparkLine;
