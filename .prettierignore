@@ -1,0 +1,9 @@
+/node_modules/*
+/examples/build/*
+/coverage/*
+/.vscode/*
+/dist/*
+
+.DS_Store
+npm-debug.log*
+.idea
