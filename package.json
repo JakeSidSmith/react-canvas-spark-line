@@ -8,8 +8,10 @@
     "prepublishOnly": "npm run test && npm run dist",
     "start": "budo examples/src/index.tsx:build/index.js --live --dir examples -- -p [tsify -p tsconfig.examples.json]",
     "dist": "rm -rf dist && tsc --project tsconfig.dist.json",
+    "prettier": "prettier --write '**/*.@(ts|tsx)'",
+    "prettier-check": "prettier --check '**/*.@(ts|tsx)'",
     "typecheck": "tsc --noEmit --project tsconfig.json",
-    "lint": "tslint --project tsconfig.json '@(src|tests|examples|docs)/**/*.@(ts|tsx)'",
+    "lint": "tslint --project tsconfig.json '@(src|tests|examples|docs)/**/*.@(ts|tsx)' && npm run prettier-check",
     "tests": "jest",
     "test": "npm run typecheck && npm run lint && npm run tests -- --coverage --runInBand"
   },
