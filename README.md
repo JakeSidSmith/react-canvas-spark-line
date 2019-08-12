@@ -35,6 +35,7 @@ class MyComponent extends Component {
         data={data}
         includeZero={false} // Default: true
         areaOpacity={0} // Default: 0.3
+        areaColor={['red', 'white']} // Default: {color}
       />
     );
   }
