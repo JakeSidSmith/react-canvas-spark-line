@@ -36,13 +36,13 @@ class App extends React.Component {
 
         <p>Random data with area color</p>
         <SparkLine
-            animate
-            animationDuration={2000}
-            width={100}
-            height={30}
-            color="red"
-            data={data}
-            areaColor="orange"
+          animate
+          animationDuration={2000}
+          width={100}
+          height={30}
+          color="red"
+          data={data}
+          areaColor="orange"
         />
 
         <p>Random data with area gradient</p>
