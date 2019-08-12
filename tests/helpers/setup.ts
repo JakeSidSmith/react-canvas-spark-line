@@ -25,4 +25,4 @@ jest.spyOn(ReactDOM, 'findDOMNode').mockImplementation(() => ({
   getContext,
   getAttribute,
   setAttribute,
-}));
+}) as unknown as HTMLCanvasElement);
