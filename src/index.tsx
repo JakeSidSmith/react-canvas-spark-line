@@ -30,8 +30,8 @@ export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
     includeZero: PropTypes.bool,
     areaOpacity: PropTypes.number,
     areaColor: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string),
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
     ]),
   };
 
@@ -165,27 +165,27 @@ export class SparkLine extends React.Component<SparkLineProps, SparkLineState> {
 
       // If areaColor is provided and it is an array, create a gradient
       if (areaColor && Array.isArray(areaColor)) {
-          // Set the gradient to be from the top to the bottom
-          const gradient = this.canvas
-              .createLinearGradient(0, 0, 0, height);
+        // Set the gradient to be from the top to the bottom
+        const gradient = this.canvas
+          .createLinearGradient(0, 0, 0, height);
 
-          // gradient.addColorStop() requires a number between 0 and 1 as the color stop
-          const stops = 1 / areaColor.length;
+        // gradient.addColorStop() requires a number between 0 and 1 as the color stop
+        const stops = 1 / areaColor.length;
 
-          // Add each of the colors to the gradient
-          areaColor.forEach((c: string, index: number) => {
-              const stop = stops * (index + 1);
-              gradient.addColorStop(stop, c);
-          });
+        // Add each of the colors to the gradient
+        areaColor.forEach((c: string, index: number) => {
+          const stop = stops * (index + 1);
+          gradient.addColorStop(stop, c);
+        });
 
-          // Set the gradient to the canvas fill
-          this.canvas.setFillStyle(gradient);
+        // Set the gradient to the canvas fill
+        this.canvas.setFillStyle(gradient);
 
-          // Fill using the gradient on the data path
-          this.canvas.fillPath(dataFill);
+        // Fill using the gradient on the data path
+        this.canvas.fillPath(dataFill);
       } else {
-          // If areaColor is not provided, use color.
-          this.canvas.fillPath(dataFill, areaColor || color);
+        // If areaColor is not provided, use color.
+        this.canvas.fillPath(dataFill, areaColor || color);
       }
     }
   }
